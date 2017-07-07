@@ -1,4 +1,4 @@
-class CreateStudents < ActiveRecord::Migration
+class AddGradeAndBirthdateToStudents < ActiveRecord::Migration
 
   connection = ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
@@ -6,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration
   )
 
   sql = <<-SQL
-  CREATE TABLE IF NOT EXISTS students (
+  CREATE TABLE IF NOT EXISTS new_columns (
   id INTEGER PRIMARY KEY,
   name TEXT
   )
@@ -16,9 +16,8 @@ class CreateStudents < ActiveRecord::Migration
 
 
   def change
-    create_table :students do |t|
-     t.string :name
+    add_column :students, :grade, :integer
+    add_column :students, :birthdate, :string
     end
 
-end
 end
